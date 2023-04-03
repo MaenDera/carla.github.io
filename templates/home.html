@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image-to-PDF Converter and Calculator</title>
+	<style>
+		body {
+			background-color: #1b1b1b;
+			color: #fff;
+			font-family: Arial, sans-serif;
+		}
+		h1 {
+			font-size: 36px;
+			margin-top: 50px;
+			margin-bottom: 30px;
+		}
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+		input[type="number"] {
+			padding: 10px;
+			border-radius: 5px;
+			border: none;
+			background-color: #444;
+			color: #fff;
+			margin-bottom: 20px;
+		}
+		button {
+			font-weight: bold;
+			padding: 10px;
+			border-radius: 5px;
+			border: none;
+			background-color: #777;
+			color: #ff;
+			cursor: pointer;
+			margin-bottom: 20px;
+		}
+		.result {
+			font-size: 24px;
+			margin-bottom: 20px;
+		}
+		a {
+			color: #fff;
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h2>Converter</h2>
+
+		<form action="/convert" method="POST" enctype="multipart/form-data">
+			<label for="image">Choose an image:</label>
+			<input type="file" id="image" name="image">
+			<button type="submit" class="bold-button">Convert</button>
+			{% if pdf_link %}
+			<p style="font-size: 120%", align = center><a href="{{ pdf_link }}">Download PDF file</a></p>
+			{% endif %}
+		</form>
+
+		<hr>
+
+		<h2>Calculator</h2>
+		
+		<form action="/calculate" method="POST">
+		<style>
+			label {
+				padding-right: 8px;
+				padding-left: 16px;
+			}
+		</style>
+			<label for="x">El förbruknig:</label>
+			<input type="number" step="any" id="x" name="x">
+			<label for="y">El pris:</label>
+			<input type="number" step="any" id="y" name="y">
+			<label for="a">Mån+:</label>
+			<input type="number" step="any" id="a" name="a">
+			<button type="submit"  class="bold-button">Calculate</button>
+			{% if result %}
+			<p class="result", align = center>Result: {{ result }}</p>
+			{% endif %}
+		</form>
+		
+
+	</div>
+</body>
+</html>
